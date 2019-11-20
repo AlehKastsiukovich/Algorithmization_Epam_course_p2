@@ -7,16 +7,14 @@ import java.util.Scanner;
 
 /**
  * Дан массив действительных чисел, размерность которого N. Посчитать сколько в нем отрицательных,
- * положительных и нулевых элементов.
+ *  положительных и нулевых элементов.
  */
 
 public class Task3 {
     private static int [] array;
     private static int n;
-    private static Scanner scanner = new Scanner(System.in);
-    private static Random random = new Random();
 
-    public static void function() {
+    public static void findSolution() {
         int posCount = 0;
         int negCount = 0;
         int zeroCount = 0;
@@ -31,20 +29,28 @@ public class Task3 {
             }
         }
 
-        System.out.println("Number of positive elements: "+posCount);
-        System.out.println("Number of negative elements: "+negCount);
-        System.out.println("Number of zero elements: "+zeroCount);
+        System.out.println("Number of positive elements: " + posCount);
+        System.out.println("Number of negative elements: " + negCount);
+        System.out.println("Number of zero elements: " + zeroCount);
     }
 
     public static void main(String[] args) {
+        @SuppressWarnings("resource")
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
 
+        System.out.println("Enter array size: ");
         while (true) {
-            System.out.println("Enter array size: ");
+
+            while (!scanner.hasNextInt()) {
+                scanner.next();
+                System.out.println("Enter array size: ");
+            }
             n = scanner.nextInt();
             if (n > 0) {
                 break;
             } else {
-                System.out.println("Incorrect data, try again.");
+                System.out.println("Enter array size: ");
             }
         }
 
@@ -56,6 +62,6 @@ public class Task3 {
 
         System.out.println(Arrays.toString(array));
 
-        function();
+        findSolution();
     }
 }

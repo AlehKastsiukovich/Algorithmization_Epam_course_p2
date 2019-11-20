@@ -15,16 +15,29 @@ public class Task2 {
 
     public static void readData() {
         Scanner scanner = new Scanner(System.in);
-            a = scanner.nextInt();
-            b = scanner.nextInt();
-            c = scanner.nextInt();
-            d = scanner.nextInt();
+
+        inputCheck(scanner);
+        a = scanner.nextInt();
+
+        inputCheck(scanner);
+        b = scanner.nextInt();
+
+        inputCheck(scanner);
+        c = scanner.nextInt();
+
+        inputCheck(scanner);
+        d = scanner.nextInt();
+    }
+
+    public static void inputCheck(Scanner scanner) {
+        while (!scanner.hasNextInt()) {
+            scanner.next();
+        }
     }
 
     public static int findNod(int a, int b) {
         while(b != 0) {
-            int temp = a%b;
-           // System.out.println(temp);
+            int temp = a % b;
             a = b;
             b = temp;
         }

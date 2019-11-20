@@ -17,14 +17,23 @@ public class Task1 {
     }
 
     public static void readData() {
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
-            a = scanner.nextInt();
-            b = scanner.nextInt();
+
+        while(!scanner.hasNextInt()) {
+            scanner.next();
+        }
+        a = scanner.nextInt();
+
+        while(!scanner.hasNextInt()) {
+            scanner.next();
+        }
+        b = scanner.nextInt();
     }
 
     public static int findNod(int a, int b) {
         while(b != 0) {
-            int temp = a%b;
+            int temp = a % b;
             System.out.println(temp);
             a = b;
             b = temp;

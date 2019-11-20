@@ -1,7 +1,6 @@
 package by.etc.alg.decomposition;
 
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -15,28 +14,49 @@ public class Task12 {
     private static int [] array;
     private static int arraySize;
 
-    public static void readData() {
-        System.out.println("Enter n and m: ");
+    public static void initFields() {
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter n: ");
+        while (!scanner.hasNextInt()) {
+            scanner.next();
+            System.out.println("Enter n: ");
+
+        }
         n = scanner.nextInt();
+
+        System.out.println("Enter m: ");
+        while (!scanner.hasNextInt()) {
+            scanner.next();
+            System.out.println("Enter m: ");
+
+        }
         m = scanner.nextInt();
+
+        System.out.println("Enter array size: ");
+        while (!scanner.hasNextInt()) {
+            scanner.next();
+            System.out.println("Enter array size: ");
+
+        }
         arraySize = scanner.nextInt();
     }
 
-    public static int genRanDignit(int p, int m) {
+    public static int generateDigit(int p, int m) {
         return (int)(Math.random() * (m - p + 1)) + p;
     }
 
     public static int createNumber(int m) {
         StringBuilder sb = new StringBuilder();
 
-        int number = (m < 10) ? genRanDignit(1, m) : genRanDignit(1,9);
+        int number = (m < 10) ? generateDigit(1, m) : generateDigit(1, 9);
         sb.append(number);
 
         while (number < m) {
-            int newNumber = genRanDignit(1,9);
+            int newNumber = generateDigit(1, 9);
 
-            if((number + newNumber) > m) {
+            if ((number + newNumber) > m) {
             } else {
                 number += newNumber;
                 sb.append(newNumber);
@@ -52,16 +72,18 @@ public class Task12 {
         }
     }
 
-    public static void fillArray(int m) {
+    public static int[] fillArray(int m) {
         array = new int[arraySize];
+
         for(int i = 0; i < array.length; i++) {
             array[i] = createNumber(m);
         }
-        System.out.println(Arrays.toString(array));
+
+       return array;
     }
 
     public static void main(String[] args) {
-        readData();
+        initFields();
         fillArray(m);
     }
 }

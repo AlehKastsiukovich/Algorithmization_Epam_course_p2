@@ -13,16 +13,8 @@ public class Task7 {
     public static double [][] matrix;
 
     public static void createMatrix() {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            n = scanner.nextInt();
-            if (n > 0) {
-                matrix = new double[n][n];
-                break;
-            }
-        }
-
         for (int i = 0; i < matrix.length; i++) {
+
             for (int j = 0; j < matrix[i].length; j++) {
                 matrix[i][j] = (i * i - j * j) / n;
             }
@@ -33,7 +25,9 @@ public class Task7 {
         int count = 0;
 
         for(int i = 0; i < matrix.length; i++) {
+
             for(int j = 0; j < matrix[i].length;j++) {
+
                 if(matrix[i][j] > 0) {
                     count++;
                 }
@@ -44,7 +38,28 @@ public class Task7 {
     }
 
     public static void main(String[] args) {
+        @SuppressWarnings("resource")
+        Scanner scanner = new Scanner(System.in);
+
+
+        while (true) {
+            System.out.println("Enter array size: ");
+
+            while (!scanner.hasNextInt()) {
+                scanner.next();
+                System.out.println("Enter array size: ");
+            }
+
+            n = scanner.nextInt();
+
+            if (n > 0) {
+                matrix = new double[n][n];
+                break;
+            }
+        }
+
         createMatrix();
+
         System.out.println("Number of positive elements is " + numOfPos());
     }
 }

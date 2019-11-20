@@ -11,16 +11,6 @@ import java.util.Scanner;
 public class Task17 {
     private static int n;
 
-    public static void readData() {
-        System.out.println("Enter number: ");
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            n = scanner.nextInt();
-            if (n > 1) {
-                break;
-            }
-        }
-    }
 
     public static int[] numberToArray(int number) {
         String word = Integer.toString(number);
@@ -43,7 +33,7 @@ public class Task17 {
         return sum;
     }
 
-    public static void quantityMinus(int number) {
+    public static int quantityMinus(int number) {
         int quantity = 0;
         System.out.println("Number: " + number);
 
@@ -52,11 +42,25 @@ public class Task17 {
             quantity++;
         }
 
-        System.out.println("Number of deductions: " + quantity);
+        return quantity;
     }
 
     public static void main(String[] args) {
-        readData();
-        quantityMinus(n);
+
+        System.out.println("Enter number: ");
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            while (!scanner.hasNextInt()) {
+                scanner.next();
+            }
+
+            n = scanner.nextInt();
+            if (n > 1) {
+                break;
+            }
+        }
+
+        System.out.println("Number of deductions: " + quantityMinus(n));
+
     }
 }

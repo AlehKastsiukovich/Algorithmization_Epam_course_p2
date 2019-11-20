@@ -13,34 +13,46 @@ public class Task6 {
     private static int c;
 
     public static void readData() {
-        System.out.println("Enter 3 number: ");
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter 3 number: ");
+
+        checkInput(scanner);
         a = scanner.nextInt();
+
+        checkInput(scanner);
         b = scanner.nextInt();
+
+        checkInput(scanner);
         c = scanner.nextInt();
     }
 
     public static int findNod(int a, int b) {
         while(b != 0) {
-            int temp = a%b;
-            // System.out.println(temp);
+            int temp = a % b;
             a = b;
             b = temp;
         }
         return a;
-
     }
 
-    public static void checkRelativePrime(int a) {
-        if (a == 1) {
-            System.out.println("Yes");
+    public static boolean checkRelativePrime(int val) {
+        if (val == 1) {
+            return true;
         } else {
-            System.out.println("No");
+            return false;
+        }
+    }
+
+    public static void checkInput(Scanner scanner) {
+        while (!scanner.hasNextInt()) {
+            scanner.next();
         }
     }
 
     public static void main(String[] args) {
         readData();
-        checkRelativePrime(findNod(a,findNod(b,c)));
+        System.out.println(checkRelativePrime(findNod(a,findNod(b,c))));
     }
 }

@@ -1,5 +1,6 @@
 package by.etc.alg.decomposition;
 
+
 import java.util.Scanner;
 
 /**
@@ -7,27 +8,31 @@ import java.util.Scanner;
  * */
 
 public class Task3 {
-    private static double square;
     private static double a;
-    private static Scanner scanner = new Scanner(System.in);
 
-    public static void  initA() {
-        System.out.println("Enter side a: ");
-        a = scanner.nextDouble();
-    }
-
-    public static double triangleSquare() {
+    public static double triangleSquare(double a) {
         return ((Math.sqrt(3)) / 4) * Math.pow(a, 2);
     }
 
-    public static void hexagonSquare() {
-        square = triangleSquare() * 6;
-        System.out.println(square);
+    public static double hexagonSquare(double square) {
+        double hexSqr = square * 6;
+        return  hexSqr;
     }
 
-
     public static void main(String[] args) {
-        initA();
-        hexagonSquare();
+        @SuppressWarnings("resource")
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter a: ");
+
+        while (!scanner.hasNextDouble()) {
+            scanner.next();
+            System.out.println("Enter a: ");
+        }
+
+        a = scanner.nextDouble();
+
+        double trSqr = triangleSquare(a);
+        System.out.println("Hexagon square is " + hexagonSquare(trSqr));
     }
 }

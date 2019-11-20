@@ -1,8 +1,6 @@
 package by.etc.alg.sort;
 
 
-import java.util.Arrays;
-
 /**
  * Сортировка вставками. Дана последовательность чисел a1, a2...an.  Требуется переставить числа в порядке
  * возрастания. Пусть а1, а2, аi - упорядоченная последовательность. Т.е а1 <= a2 и т.д. Берется следующее
@@ -29,7 +27,7 @@ public class Task5 {
         return mid;
     }
 
-    public static void binaryInsertionSort(int arr[]) {
+    public static int[] binaryInsertionSort(int arr[]) {
         for (int i = 1; i < arr.length; i++) {
             int ins = binarySearch(arr, 0, i, arr[i]);
             int value = arr[i];
@@ -45,11 +43,12 @@ public class Task5 {
             arr[ins] = value;
         }
 
-        System.out.println(Arrays.toString(arr));
+        return arr;
     }
 
     public static void main(String[] args) {
         int[] arr = {2, -100, 5, 200, 14, 22};
-        binaryInsertionSort(arr);
+
+        int[] sorted = binaryInsertionSort(arr);
     }
 }

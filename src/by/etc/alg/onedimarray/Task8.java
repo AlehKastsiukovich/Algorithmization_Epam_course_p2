@@ -10,17 +10,19 @@ import java.util.Arrays;
 
 public class Task8 {
 
-    public static void createNewList(int [] array) {
+    public static int[] createNewList(int[] array) {
         int count = 0;
         int min = array[0];
 
         for (int i = 0; i < array.length; i++) {
+
             if (array[i] < min) {
                 min = array[i];
             }
         }
 
         for (int i = 0; i < array.length; i++) {
+
             if (array[i] == min) {
                 count++;
             }
@@ -28,18 +30,23 @@ public class Task8 {
 
         int[] newList = new int[array.length - count];
         int j = 0;
+
         for (int i = 0; i < array.length; i++) {
+
             if (array[i] != min) {
                 newList[j] = array[i];
                 j++;
             }
         }
 
-        System.out.println(Arrays.toString(newList));
+        return newList;
     }
 
     public static void main(String[] args) {
-        int [] array = {22, 10, 15, -2, -1, 99, -1};
-        createNewList(array);
+        int[] array = {22, 10, 15, -2, -1, 99, -1};
+        int[] newArr = createNewList(array);
+
+        System.out.println(Arrays.toString(newArr));
+
     }
 }

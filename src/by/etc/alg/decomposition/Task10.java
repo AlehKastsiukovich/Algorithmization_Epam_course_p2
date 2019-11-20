@@ -5,26 +5,15 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * Дано натуральное число N. Написать метод для формирования массива элементами которого являются цифры числа N.
+ * Дано натуральное число n. Написать метод для формирования массива элементами которого являются цифры числа n.
  */
 
 public class Task10 {
-    private static int N;
+    private static int n;
     private static int[] array;
-    private static Scanner scanner = new Scanner(System.in);
 
-    public static void createArray() {
-        System.out.println("Enter N: ");
-        while (true) {
-            N = scanner.nextInt();
-            if (N > 0) {
-                break;
-            } else {
-                System.out.println("You enter wrong number, try again.");
-            }
-        }
-
-        String stringNum = Integer.toString(N);
+    public static int[] createArray(int n) {
+        String stringNum = Integer.toString(n);
 
         char[] charArray = stringNum.toCharArray();
 
@@ -33,6 +22,27 @@ public class Task10 {
         for (int i = 0; i < array.length; i++) {
             array[i] = Character.getNumericValue(charArray[i]);
         }
+
+        return array;
+    }
+
+    public static int readN() {
+        @SuppressWarnings("resource")
+        Scanner scanner = new Scanner(System.in);
+        int val;
+
+        System.out.println("Enter n: ");
+
+        while (!scanner.hasNextInt()) {
+            scanner.next();
+            System.out.println("Enter n: ");
+        }
+
+        while ((val = scanner.nextInt()) < 0) {
+            System.out.println("Enter positive number!");
+        }
+
+        return val;
     }
 
     public static void printArray() {
@@ -40,7 +50,9 @@ public class Task10 {
     }
 
     public static void main(String[] args) {
-        createArray();
-        printArray();
+        n = readN();
+        int[] array = createArray(n);
+
+        System.out.println(Arrays.toString(array));
     }
 }

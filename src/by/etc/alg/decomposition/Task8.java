@@ -1,7 +1,6 @@
 package by.etc.alg.decomposition;
 
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -9,28 +8,47 @@ import java.util.Scanner;
  */
 
 public class Task8 {
-    public static int [] initArray() {
-        Scanner scanner = new Scanner(System.in);
-        int n;
-        System.out.print("Enter number of array elements: ");
-        n = scanner.nextInt();
 
+    public static int [] initArray() {
+        int n = initArraySize();
         int [] array = new int[n];
 
-        for(int i = 0; i < array.length; i++) {
-            array[i] = (int)(Math.random()*100-50);
+        for (int i = 0; i < array.length; i++) {
+            array[i] = (int) (Math.random() * 100 - 50);
         }
 
-        System.out.println("Created array: "+ Arrays.toString(array));
         return array;
     }
 
-    public static void sumOfThree(int [] array) {
-        Scanner scanner = null;
+    public static int sumOfThree(int[] array, int element) {
+        return array[element] + array[element + 1] + array[element + 2];
+    }
+
+    public static int initArraySize() {
+        @SuppressWarnings("resouce")
+        Scanner scanner = new Scanner(System.in);
+        int n;
+
+        System.out.println("Enter n: ");
+        while (!scanner.hasNextInt()) {
+            scanner.next();
+            System.out.println("Enter n: ");
+        }
+
+        while ((n = scanner.nextInt()) < 3) {
+            System.out.println("Enter a right number: ");
+        }
+
+        return n;
+    }
+
+
+    public static void main(String[] args) {
+        int[] array = initArray();
         int element;
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            scanner = new Scanner(System.in);
             System.out.println("Enter element: ");
             element = scanner.nextInt();
             if (element >= 0 && element < array.length - 2) {
@@ -40,11 +58,6 @@ public class Task8 {
             }
         }
 
-        int sum = array[element] + array[element + 1] + array[element + 2];
-        System.out.println("Sum: " + sum);
-    }
-
-    public static void main(String[] args) {
-        sumOfThree(initArray());
+        System.out.println(sumOfThree(array, element));
     }
 }

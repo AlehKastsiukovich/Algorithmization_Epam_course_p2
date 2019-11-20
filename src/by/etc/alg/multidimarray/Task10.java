@@ -10,30 +10,13 @@ import java.util.Scanner;
 public class Task10 {
     private static int[][] matrix;
 
-    public static void initMatrix() {
-        int n;
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            n = scanner.nextInt();
-            if (n > 0) {
-                break;
-            }
-        }
-
+    public static void createMatrix(int n) {
         matrix = new int[n][n];
 
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 matrix[i][j] = (int) (Math.random() * 100 - 50);
             }
-        }
-
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                System.out.print(matrix[i][j] + "\t");
-            }
-            System.out.println();
         }
     }
 
@@ -49,8 +32,41 @@ public class Task10 {
         }
     }
 
+    public static void printArray(int[][] array) {
+        for (int i = 0; i < array.length; i++) {
+
+            for (int j = 0; j < array[i].length; j++) {
+                System.out.print(array[i][j] + "\t");
+            }
+
+            System.out.println();
+        }
+
+        System.out.println();
+    }
+
     public static void main(String[] args) {
-        initMatrix();
+        @SuppressWarnings("resource")
+        Scanner scanner = new Scanner(System.in);
+        int n;
+
+        while (true) {
+
+            System.out.println("Enter matrix size: ");
+            while (!scanner.hasNextInt()) {
+                scanner.next();
+                System.out.println("Enter matrix size: ");
+            }
+
+            n = scanner.nextInt();
+
+            if (n > 0) {
+                break;
+            }
+        }
+
+        createMatrix(n);
+        printArray(matrix);
         findPosElements();
     }
 }

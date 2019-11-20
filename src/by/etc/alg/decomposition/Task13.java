@@ -10,17 +10,6 @@ import java.util.Scanner;
 public class Task13 {
     private static int n;
 
-    public static void readData() {
-        System.out.println("Enter n: ");
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            n = scanner.nextInt();
-            if (n >= 2) {
-                break;
-            }
-        }
-    }
-
     public static void findTwins(int n) {
         for (int i = n; i <= 2 * n - 2; i++) {
             System.out.println(i + " " + (i + 2));
@@ -28,7 +17,22 @@ public class Task13 {
     }
 
     public static void main(String[] args) {
-        readData();
+        @SuppressWarnings("resource")
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter n: ");
+        while (!scanner.hasNextInt()) {
+            scanner.next();
+            System.out.println("Enter n: ");
+        }
+
+        while (true) {
+            n = scanner.nextInt();
+            if (n >= 2) {
+                break;
+            }
+        }
+
         findTwins(n);
     }
 }

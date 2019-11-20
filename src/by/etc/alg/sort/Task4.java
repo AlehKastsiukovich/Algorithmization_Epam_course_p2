@@ -11,6 +11,7 @@ import java.util.Arrays;
  */
 
 public class Task4 {
+
     public static void main(String[] args) {
         int[] array = {1,3,6,12,24,99,1000};
 

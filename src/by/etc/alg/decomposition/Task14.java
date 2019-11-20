@@ -10,19 +10,10 @@ import java.util.Scanner;
 public class Task14 {
     private static int k;
 
-    public static void readData() {
-        System.out.println("Enter interval: ");
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            k = scanner.nextInt();
-            if (k > 1) {
-                break;
-            }
-        }
-    }
 
     public static int [] createArray(int n) {
         String temp = Integer.toString(n);
+
         char [] charArray = temp.toCharArray();
         int [] intArray = new int[charArray.length];
 
@@ -49,7 +40,18 @@ public class Task14 {
     }
 
     public static void main(String[] args) {
-        readData();
+        @SuppressWarnings("resource")
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter interval: ");
+        while (!scanner.hasNextInt()) {
+            scanner.next();
+            System.out.println("Enter interval: ");
+        }
+
+        while ((k = scanner.nextInt()) <= 1) {
+            System.out.println("Enter k > 1!");
+        }
 
         for (int i = 1; i < k; i++) {
             if (isArmstrong(i)) {

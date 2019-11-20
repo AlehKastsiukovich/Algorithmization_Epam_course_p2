@@ -31,6 +31,7 @@ public class Task3 {
                 arr[maxIndex] = tmp;
             }
         }
+
         System.out.println(Arrays.toString(arr));
     }
 }

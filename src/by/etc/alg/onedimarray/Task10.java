@@ -1,7 +1,6 @@
 package by.etc.alg.onedimarray;
 
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -12,24 +11,33 @@ import java.util.Scanner;
 
 public class Task10 {
 
-    public static void createArray(int[] array) {
+    public static int[] createArray(int[] array) {
         for (int i = 1; i < array.length; i = i + 2) {
             array[i] = 0;
         }
 
-        System.out.println(Arrays.toString(array));
+        return array;
     }
 
     public static void main(String[] args) {
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
+        int n = 0;
 
         System.out.println("Enter size of array: ");
-        int n = 0;
         while (true) {
+            while (!scanner.hasNextInt()) {
+                scanner.next();
+                System.out.println("Enter size of array: ");
+            }
+
             n = scanner.nextInt();
+
             if (n > 0) {
                 break;
+            } else {
+                System.out.println("Enter size of array: ");
             }
         }
 

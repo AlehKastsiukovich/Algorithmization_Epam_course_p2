@@ -17,19 +17,8 @@ public class Task1 {
     private static int[] newArr;
     public static int k;
 
-    public static int[] initArray() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter size of array: ");
-        int arrSize;
-
-        while (true) {
-            arrSize = scanner.nextInt();
-            if (arrSize > 0) {
-                break;
-            }
-        }
-
-        int[] arr = new int[arrSize];
+    public static int[] initArray(int size) {
+        int[] arr = new int[size];
         Random random = new Random();
 
         for (int i = 0; i < arr.length; i++) {
@@ -46,18 +35,18 @@ public class Task1 {
         int k;
         while (true) {
             k = scanner.nextInt();
-            if ((k > 0)&&(k < arr1.length)) {
+            if ((k > 0) && (k < arr1.length)) {
                 break;
             } else {
                 System.out.println("You enter wrong data. Try again.");
             }
         }
-        return  k;
+        return k;
     }
 
-    public static void solution() {
-        arr1 = initArray();
-        arr2 = initArray();
+    public static void solution(int size) {
+        arr1 = initArray(size);
+        arr2 = initArray(size);
         newArr = new int[arr1.length + arr2.length];
 
         System.out.println(Arrays.toString(arr1));
@@ -81,6 +70,23 @@ public class Task1 {
     }
 
     public static void main(String[] args) {
-       solution();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter size of array: ");
+        int arrSize;
+
+        while (true) {
+
+            while (!scanner.hasNextInt()) {
+                scanner.next();
+            }
+
+            arrSize = scanner.nextInt();
+            if (arrSize > 0) {
+                break;
+            }
+        }
+
+
+       solution(arrSize);
     }
 }

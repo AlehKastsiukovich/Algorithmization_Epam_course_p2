@@ -1,5 +1,6 @@
 package by.etc.alg.onedimarray;
 
+
 import java.util.Scanner;
 
 /**
@@ -10,7 +11,7 @@ public class Task1 {
     private static int k;
     private static int[] array;
 
-    public static int function() {
+    public static int findSum(int[] array) {
         int sum = 0;
         for (int i = 0; i < array.length; i++) {
             if (array[i] % k == 0) {
@@ -21,12 +22,22 @@ public class Task1 {
     }
 
     public static void main(String[] args) {
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Enter K: ");
+        while (!scanner.hasNextInt()) {
+            scanner.next();
+            System.out.println("Enter K: ");
+        }
+
         k =  scanner.nextInt();
 
         array = new int[]{1, 10, 15, 22, -10, 99, 6, 400};
 
-        System.out.println(function());
+        int sum = findSum(array);
+
+        System.out.println(sum);
+
     }
 }

@@ -13,7 +13,7 @@ public class Task2 {
     private static int [] array;
     private static int z;
 
-    public static void function() {
+    public static void exchangeElements() {
         int count = 0;
 
         for (int i = 0; i < array.length; i++) {
@@ -28,11 +28,17 @@ public class Task2 {
     }
 
     public static void main(String[] args) {
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
+
+        while (!scanner.hasNextInt()) {
+            scanner.next();
+        }
+
         z = scanner.nextInt();
 
         array = new int[]{5, -100, 2, 999, 0, 3, 44, 45, 9, -99};
 
-        function();
+       exchangeElements();
     }
 }

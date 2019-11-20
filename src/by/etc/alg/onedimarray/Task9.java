@@ -13,10 +13,17 @@ import java.util.Scanner;
 public class Task9 {
 
     public static void main(String[] args) {
-        Random random = new Random();
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
 
+        Random random = new Random();
+
         System.out.println("Enter size of array: ");
+        while (!scanner.hasNextInt()) {
+            scanner.next();
+            System.out.println("Enter size of array: ");
+        }
+
         int[] array = new int[scanner.nextInt()];
 
         for (int i = 0; i < array.length; i++) {
@@ -28,18 +35,22 @@ public class Task9 {
         System.out.println(Arrays.toString(array));
 
         for (int i = 0; i < array.length; i++) {
+
             int count = 0;
             for (int j = 0; j < array.length; j++) {
+
                 if (array[i] == array[j]) {
                     count++;
                 }
             }
+
             freqArray[i] = count;
         }
 
         int max = freqArray[0];
         int iElem = 0;
         for (int i = 0; i < freqArray.length; i++) {
+
             if (freqArray[i] > max) {
                 max = freqArray[i];
                 iElem = i;
@@ -48,7 +59,9 @@ public class Task9 {
 
         int minFreq = array[iElem];
         for (int i = 0; i < freqArray.length; i++) {
+
             if (freqArray[i] == max) {
+
                 if (array[i] < minFreq) {
                     minFreq = array[i];
                 }

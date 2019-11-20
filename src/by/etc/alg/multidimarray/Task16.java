@@ -10,14 +10,10 @@ import java.util.Scanner;
 public class Task16 {
     private static int[][] magicArray;
     private static int magicSum;
-    private static Scanner scanner = new Scanner(System.in);
     private static int n;
 
-    public static void chooseMethod() {
-        System.out.println("Enter size of array: ");
-        n = scanner.nextInt();
-
-        if (n % 2 == 0) {
+    public static void chooseMethod(int size) {
+        if (size % 2 == 0) {
             createEvenArray();
         } else {
             createOddArray();
@@ -26,7 +22,7 @@ public class Task16 {
 
     public static void createOddArray() {
         magicSum = n * ((int) Math.pow(n, 2) + 1) / 2;
-        System.out.println("Magic sum will be " + magicSum);
+        System.out.println("Magic findSum will be " + magicSum);
 
         magicArray = new int[n][n];
 
@@ -69,21 +65,23 @@ public class Task16 {
             value++;
         }
 
-        printArray();
+        printArray(magicArray);
     }
 
-    public static void printArray() {
+    public static void printArray(int[][] array) {
         for (int i = 0; i < n; i++) {
+
             for (int j = 0; j < n; j++) {
-                System.out.print(magicArray[i][j] + " ");
+                System.out.print(array[i][j] + " ");
             }
+
             System.out.println();
         }
     }
 
     public static void createEvenArray() {
         magicSum = n * ((int) Math.pow(n, 2) + 1) / 2;
-        System.out.println("Magic sum will be " + magicSum);
+        System.out.println("Magic findSum will be " + magicSum);
 
         magicArray = new int[n][n];
 
@@ -123,10 +121,28 @@ public class Task16 {
             }
         }
 
-        printArray();
+        printArray(magicArray);
     }
 
     public static void main(String[] args) {
-        chooseMethod();
+        @SuppressWarnings("resource")
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+
+            System.out.println("Enter size of array: ");
+            while (!scanner.hasNextInt()) {
+                scanner.next();
+                System.out.println("Enter size of array: ");
+            }
+
+            n = scanner.nextInt();
+
+            if (n > 0) {
+                break;
+            }
+        }
+
+        chooseMethod(n);
     }
 }

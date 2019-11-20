@@ -14,9 +14,9 @@ import java.util.Scanner;
 public class Task5 {
     private static int[][] matrix;
     private static int n;
-    private static Scanner scanner = new Scanner(System.in);
 
-    public static void solution(int[][] array) {
+
+    public static void createMatrix(int[][] array) {
         int count = 1;
 
         int temp = n;
@@ -37,9 +37,17 @@ public class Task5 {
     }
 
     public static void main(String[] args) {
-        System.out.println("Enter matrix size: ");
+        @SuppressWarnings("resource")
+        Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Enter array size: ");
         while (true) {
+
+            while (!scanner.hasNextInt()) {
+                scanner.next();
+                System.out.println("Enter array size: ");
+            }
+
             n = scanner.nextInt();
             if (n > 0) {
                 matrix = new int[n][n];
@@ -47,6 +55,6 @@ public class Task5 {
             }
         }
 
-        solution(matrix);
+        createMatrix(matrix);
     }
 }

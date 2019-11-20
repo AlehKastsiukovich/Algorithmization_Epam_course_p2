@@ -11,22 +11,19 @@ import java.util.Scanner;
 
 public class Task6 {
     private static int[] arr;
-    private static Random random = new Random();
-    private static Scanner scanner = new Scanner(System.in);
 
-    public static void genArr() {
-        System.out.println("Enter number of array elements: ");
-        int num = scanner.nextInt();
+    public static int[] genArr(int num) {
+        Random random = new Random();
         arr = new int[num];
 
         for (int i = 0; i < arr.length; i++) {
             arr[i] = random.nextInt(100);
         }
 
-        System.out.println(Arrays.toString(arr));
+       return arr;
     }
 
-    public static void shellSort() {
+    public static int[] shellSort(int[] arr) {
         int step = arr.length/2;
 
         while (step > 0) {
@@ -43,11 +40,32 @@ public class Task6 {
             step = step/2;
         }
 
-        System.out.println(Arrays.toString(arr));
+        return arr;
     }
 
     public static void main(String[] args) {
-        genArr();
-        shellSort();
+        @SuppressWarnings("resource")
+        Scanner scanner = new Scanner(System.in);
+
+        int num = 0;
+
+        System.out.println("Enter number of array elements: ");
+        while (true) {
+            while (!scanner.hasNextInt()) {
+                scanner.next();
+            }
+
+            num = scanner.nextInt();
+
+            if (num > 0) {
+                break;
+            }
+        }
+
+        genArr(num);
+
+        int[] sortedArr = shellSort(arr);
+
+        System.out.println("Sorted array = " + Arrays.toString(sortedArr));
     }
 }

@@ -9,67 +9,69 @@ import java.util.Scanner;
  */
 
 public class Task3 {
-    private static int[][] matrix;
+    private static int[][] array;
     private static int n;
     private static int m;
-    private static Scanner scanner = new Scanner(System.in);
-    private static Random random = new Random();
 
-    public static void generateArray() {
-        System.out.println("Enter matrix size: ");
 
-        while (true) {
-            n = scanner.nextInt();
-            m = scanner.nextInt();
-
-            if ((n > 0)&&(m > 0)) {
-                matrix = new int[n][m];
-                break;
-            } else {
-                System.out.println("Your enter wrong numbers.");
-            }
-        }
+    public static void generateArray(int n, int m) {
+        Random random = new Random();
+        array = new int[n][m];
 
         for (int i = 0; i < n; i++) {
+
             for (int j = 0; j < m; j++) {
-                matrix[i][j] = random.nextInt(100) - 50;
-                System.out.print(matrix[i][j] + " ");
+                array[i][j] = random.nextInt(100) - 50;
+                System.out.print(array[i][j] + " ");
             }
             System.out.println();
         }
     }
 
-    public static void solution(int[][] array) {
-        System.out.println("Enter line then column: ");
-
-        int k = 0;
-        int p = 0;
-
-        while (true) {
-            k = scanner.nextInt();
-            p = scanner.nextInt();
-            if ((k >= 0) && (p >=0)) {
-                break;
-            } else {
-                System.out.println("Wrong numbers. Try again.");
-            }
-        }
-
+    public static void printLine(int[][] array, int line) {
         System.out.println("Line k: ");
         for (int i = 0; i < array[0].length; i++) {
-            System.out.print(array[k][i] + " ");
-        }
-
-        System.out.println();
-
-        System.out.println("Column p: ");
-        for (int j = 0; j < array.length; j++) {
-            System.out.print(array[j][p] + " ");
+            System.out.print(array[line][i] + " ");
         }
     }
 
+    public static void printColumn(int[][] array, int column) {
+        System.out.println("Column p: ");
+        for (int j = 0; j < array.length; j++) {
+            System.out.print(array[j][column] + " ");
+        }
+    }
+
+    public static int initArrSize(Scanner scanner) {
+        int num;
+
+        while (true) {
+            while (!scanner.hasNextInt()) {
+                scanner.next();
+            }
+
+            num = scanner.nextInt();
+
+            if (num > 0) {
+                break;
+            }
+        }
+
+        return num;
+    }
+
     public static void main(String[] args) {
-        generateArray();
-        solution(matrix);
+        @SuppressWarnings("resource")
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter N: ");
+        n = initArrSize(scanner);
+        System.out.println("Enter M: ");
+        m = initArrSize(scanner);
+
+        generateArray(n, m);
+
+        printColumn(array, 2);
+        printLine(array, 1);
     }
 }

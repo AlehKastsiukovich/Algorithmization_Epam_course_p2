@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class Task4 {
 
-    public static void function(int [] array) {
+    public static void exchangeMinMax(int [] array) {
         int maxInd = 0;
         int maxNum = 0;
         for(int i = 0; i < array.length; i++) {
@@ -18,9 +18,11 @@ public class Task4 {
                 maxInd = i;
             }
         }
+
         int minInd = 0;
         int minNum = 0;
-        for(int i = 0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++)
+        {
             if(array[i] < minNum) {
                 minNum = array[i];
                 minInd = i;
@@ -35,7 +37,7 @@ public class Task4 {
     }
 
     public static void main(String[] args) {
-        int [] array = {1000,9,3,-4,15,200};
-        function(array);
+        int[] array = {1000, 9, 3, -4, 15, 200};
+        exchangeMinMax(array);
     }
 }

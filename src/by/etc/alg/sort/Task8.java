@@ -12,21 +12,17 @@ import java.util.Scanner;
 public class Task8 {
     private static int[] pArray;
     private static int[] qArray;
-    private static Scanner scanner = new Scanner(System.in);
-    private static Random random = new Random();
 
-    public static void genArray() {
-        System.out.println("Enter number of elements: ");
-        int elemNumber = scanner.nextInt();
-        pArray = new int[elemNumber];
-        qArray = new int[elemNumber];
+
+    public static void genArray(int num) {
+        Random random = new Random();
+        pArray = new int[num];
+        qArray = new int[num];
 
         for (int i = 0; i < pArray.length; i++) {
             pArray[i] = random.nextInt(10) + 1;
             qArray[i] = random.nextInt(10) + 1;
         }
-
-        printArray();
     }
 
     public static int[] shellSort(int[] arr) {
@@ -84,17 +80,32 @@ public class Task8 {
         System.out.println();
     }
 
-    public static void printArray() {
-        for (int i = 0; i < pArray.length; i++) {
-            System.out.print(pArray[i] + "/" + qArray[i] + " | ");
-        }
-    }
-
     public static void main(String[] args) {
-        genArray();
+        @SuppressWarnings("resouce")
+        Scanner scanner = new Scanner(System.in);
+        int num;
+
+        System.out.println("Enter number of elements: ");
+        while (true) {
+
+            while (!scanner.hasNextInt()) {
+                scanner.next();
+            }
+
+            num = scanner.nextInt();
+
+            if (num > 0) {
+                break;
+            }
+        }
+
+        genArray(num);
         initNumerators();
         pArray = shellSort(pArray);
         System.out.println("Sorted: ");
-        printArray();
+
+        for (int i = 0; i < pArray.length; i++) {
+            System.out.print(pArray[i] + "/" + qArray[i] + " | ");
+        }
     }
 }
